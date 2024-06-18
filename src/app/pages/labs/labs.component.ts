@@ -14,5 +14,22 @@ export class LabsComponent {
     'Crear proyecto',
     'Crear componentes',
     'Crear servicio',
-  ]
+  ];
+  name = 'Eugene'; 
+  age = 18;
+  disabled = true;
+  img = 'https://w3schools.com/howto/img_avatar.png';
+  person = {
+    name: 'Eugene',
+    age: '18',
+    avatar: 'https://w3schools.com/howto/img_avatar.png',
+  }
+
+  clickHandler() {
+    alert('hi there :D');
+  }
+
+  changeHandler(event: Event) {
+    console.log(event);
+  }
 }
