@@ -8,47 +8,46 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
 export class HomeComponent {
   tasks = signal<Task[]>([
     {
       id: Date.now(),
       title: 'Instalar Angular CLI',
-      completed: false
+      completed: false,
     },
     {
       id: Date.now(),
       title: 'Crear proyecto',
-      completed: false
+      completed: false,
     },
     {
       id: Date.now(),
       title: 'Crear componentes',
-      completed: false
+      completed: false,
     },
     {
       id: Date.now(),
       title: 'Crear servicio',
-      completed: false
+      completed: false,
     },
   ]);
 
   newTaskCtrl = new FormControl('', {
     nonNullable: true,
-    validators: [
-      Validators.required,
-      Validators.pattern('^\\S.*$'),
-    ]
+    validators: [Validators.required],
   });
 
-  changeHandler = ():void => {
+  changeHandler = (): void => {
     if (this.newTaskCtrl.valid) {
-      const value = this.newTaskCtrl.value;
-      this.addTask(value);
-      this.newTaskCtrl.setValue('');
+      const value = this.newTaskCtrl.value.trim();
+      if (value !== '') {
+        this.addTask(value);
+        this.newTaskCtrl.setValue('');
+      }
     }
-  }
+  };
   addTask = (title: string) => {
     const newTask = {
       id: Date.now(),
@@ -56,22 +55,56 @@ export class HomeComponent {
       completed: false,
     };
     this.tasks.update((tasks) => [...tasks, newTask]);
-  }
+  };
   updateTask = (index: number) => {
     this.tasks.update((tasks) => {
       return tasks.map((task, position) => {
-        if(position === index) {
+        if (position === index) {
           return {
             ...task,
-            completed: !task.completed
-          }
+            completed: !task.completed,
+          };
         }
         return task;
-      })
-    })
-  }
+      });
+    });
+  };
   deleteTask = (index: number) => {
-    this.tasks.update((tasks) => tasks.filter((task, position) => position != index));
+    this.tasks.update((tasks) =>
+      tasks.filter((task, position) => position != index)
+    );
+  };
+
+  updateTaskEditingMode = (index: number) => {
+    this.tasks.update(prevState => {
+      return prevState.map((task, position) => {
+        if (position === index) {
+          return {
+            ...task,
+            editing: true,
+          };
+        }
+        return {
+          ...task,
+          editing: false,
+        };
+      });
+    });
   }
 
+  updateTaskText = (index: number, event: Event) => {
+    const input = event.target as HTMLInputElement;
+    this.tasks.update(prevState => {
+      return prevState.map((task, position) => {
+        if (position === index) {
+          return {
+            ...task,
+            title: input.value,
+            editing: false,
+          };
+        }
+        return task
+      });
+    });
+  }
 }
