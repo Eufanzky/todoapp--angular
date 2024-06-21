@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
-import { CommonModule, NgFor } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-labs',
   standalone: true,
-  imports: [NgFor],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './labs.component.html',
   styleUrl: './labs.component.css'
 })
@@ -20,12 +21,19 @@ export class LabsComponent {
   age = 18;
   disabled = true;
   img = 'https://w3schools.com/howto/img_avatar.png';
-  person = {
+  person = signal({
     name: 'Eugene',
-    age: '18',
+    age: 19,
     avatar: 'https://w3schools.com/howto/img_avatar.png',
-  }
+  })
 
+  colorCtrl = new FormControl();
+
+  constructor () {
+    this.colorCtrl.valueChanges.subscribe(value => {
+      console.log(value)
+    })
+  }
   clickHandler() {
     alert('hi there :D');
   }
@@ -38,5 +46,23 @@ export class LabsComponent {
   keyDownHandler(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
     console.log(input.value);
+  }
+  changeName(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const newValue = input.value;
+    this.person.update(prevState => {
+      return {
+        ...prevState,
+        name: newValue
+      }
+    });
+  }
+  changeAge(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const newValue = input.value;
+    this.person.update(prevState => {
+      return {...prevState,
+      age: parseInt(newValue)}
+    });
   }
 }
