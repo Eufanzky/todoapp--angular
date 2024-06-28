@@ -1,32 +1,36 @@
-<<<<<<< HEAD
-# Todoapp
+# AngularJS Todo Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
+This project is a simple yet powerful Todo application built with AngularJS. It allows users to manage their daily tasks efficiently, providing functionalities such as adding new tasks, marking tasks as completed, and filtering tasks based on their status.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Add New Tasks**: Users can add new tasks to their todo list.
+- **Mark Tasks as Completed**: Tasks can be marked as completed with a simple checkbox.
+- **Edit Tasks**: Double-click on a task to edit its content.
+- **Delete Tasks**: Remove tasks that are no longer needed.
+- **Filter Tasks**: View tasks that are all, pending, or completed.
+- **Clear Completed Tasks**: With a single click, users can clear all tasks that have been marked as completed.
 
-## Code scaffolding
+## Getting Started
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+To get started with this application, follow these simple steps.
 
-## Build
+### Prerequisites
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Ensure you have the following installed:
+- Node.js
+- AngularJS
 
-## Running unit tests
+### Installation
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/Eufanzky/todoapp--angular.git
+2. Run
+   ```sh
+   ng serve
+3. Open the link that and you'll have the project running in your web browser!
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-=======
-# todoapp--angular
-Angular project with angular
->>>>>>> 05669fb4016c64ac6a722ef5a8a80ac23e9321ad
+### Project Link
+https://mydayapp-44ef8.web.app/
